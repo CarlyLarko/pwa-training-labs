@@ -33,7 +33,22 @@ limitations under the License.
     <script>
 
     // Script to register the service worker goes here
-
+    // check if the serviceWork is in the navigator object
+     // which indicates serviceWorker is supported by the browser
+    if ('serviceWorker' in navigator) {
+      // If true,
+      // Iniate the load by addEventListener
+      window.addEventListener('load', () => {
+        //  register the scope
+        navigator.serviceWorker.register('/app/below/service-worker.js')
+          .then(registration => {
+            console.log('Service worker has been registered', registration.scope);
+          })
+          .catch(err => {
+            console.log('Service work has not been registered', err);
+          })
+      })
+    }
     </script>
   </body>
 </html>
