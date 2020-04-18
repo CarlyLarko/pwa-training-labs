@@ -18,9 +18,21 @@ limitations under the License.
 const app = (() => {
 
   function getImageName(country) {
+    country = country.toLowerCase();
+    // new Promise(executor) executor a function executed by the constructor
+    const promiseOfImageName = new Promise((resolve , reject) => {
+      setTimeout(() => {
+        if (country === 'spain' || country === 'chile' || country === 'peru') {
+          resolve(country + '.png');
+        } else {
+          reject(Error('Didn\'t recieve a valid country name!'));
+        }
+      }, 1000)
+    });
 
     // create and return a promise
-
+    console.log(promiseOfImageName)
+    return promiseOfImageName;
   }
 
   function isSpain(country) {
@@ -31,7 +43,11 @@ const app = (() => {
 
   function flagChain(country) {
 
-    // use the promise
+   return getImageName(country)
+    .then(fetchFlag)
+    .then(processFlag)
+    .then(appendFlag)
+    .catch(logError)
 
   }
 

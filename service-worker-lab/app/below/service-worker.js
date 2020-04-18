@@ -16,5 +16,5 @@ self.addEventListener('activate', event => {
 
 // fetch data from domain
 self.addEventListener('fetch', event => {
-  console.log('fetching:', event.request.url)
-});
+  con`sole.log('fetching:', event.request.url)
+});``
